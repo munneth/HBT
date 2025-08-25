@@ -17,24 +17,28 @@ function Loader() {
 }
 
 const Scene: React.FC = () => {
-  const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
+  try {
+    const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
 
-  return (
-    <Suspense fallback={<Loader />}>
-      <Canvas
-        camera={{ position: [0, 5, 50] }}
-        style={{ width: "100%", height: "700px" }}
-      >
-        <directionalLight
-          position={[-1.3, 6.0, 4.4]}
-          castShadow
-          intensity={Math.PI * 1}
-        />
-        <primitive object={gltf.scene} position={[0, 0, 0]} />
-        <OrbitControls target={[0, 1, 0]} enableZoom={false} />
-      </Canvas>
-    </Suspense>
-  );
+    return (
+      <Suspense fallback={<div>Loading 3D Model...</div>}>
+        <Canvas
+          camera={{ position: [0, 5, 50] }}
+          style={{ width: "100%", height: "700px" }}
+        >
+          <directionalLight
+            position={[-1.3, 6.0, 4.4]}
+            castShadow
+            intensity={Math.PI * 1}
+          />
+          <primitive object={gltf.scene} position={[0, 0, 0]} />
+          <OrbitControls target={[0, 1, 0]} enableZoom={false} />
+        </Canvas>
+      </Suspense>
+    );
+  } catch (error) {
+    return <div>Loading 3D Model...</div>;
+  }
 };
 
 export default Scene;
