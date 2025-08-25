@@ -1,5 +1,5 @@
 import React from "react";
-import Scene from "./scene";
+import Scene from "@/components/scene";
 import {
   Card,
   CardAction,
