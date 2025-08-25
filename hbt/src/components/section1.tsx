@@ -16,14 +16,14 @@ export default function Section1() {
       <div className="w-1/4 p-2">
         <Card>
           <CardHeader>
-            <CardTitle>Call Center</CardTitle>
-            <CardDescription>Card Description</CardDescription>
+            <CardTitle className="text-center">Call Center</CardTitle>
+            {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
           <CardContent>
-            <p>Card Content</p>
+            <p>Phone Number: 530-111-1111</p>
           </CardContent>
           <CardFooter>
-            <p>Card Footer</p>
+            <p>Fax: 530-111-1111</p>
           </CardFooter>
         </Card>
       </div>
@@ -33,14 +33,14 @@ export default function Section1() {
       <div className="w-1/4 p-2">
         <Card>
           <CardHeader>
-            <CardTitle>Call Center</CardTitle>
-            <CardDescription>Card Description</CardDescription>
+            <CardTitle className="text-center">Hours</CardTitle>
+            {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
           <CardContent>
-            <p>Card Content</p>
+            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
           </CardContent>
           <CardFooter>
-            <p>Card Footer</p>
+            <p>Saturday: 8:00 AM - 12:00 PM</p>
           </CardFooter>
         </Card>
       </div>

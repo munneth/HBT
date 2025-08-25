@@ -2,12 +2,24 @@
 
 // src/Scene.tsx
 import { Circle, Html, OrbitControls, Stats, useGLTF } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
+import * as THREE from "three";
+
+const Model: React.FC = () => {
+  const gltf = useGLTF("/models/peterbilt_379.glb");
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame(() => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += 0.005;
+    }
+  });
+
+  return <primitive ref={groupRef} object={gltf.scene} position={[0, 0, 0]} />;
+};
 
 const Scene: React.FC = () => {
-  const gltf = useGLTF("/models/peterbilt_379.glb");
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Canvas
@@ -15,7 +27,7 @@ const Scene: React.FC = () => {
         style={{ width: "100%", height: "700px" }}
       >
         <directionalLight position={[-1.3, 6.0, 4.4]} intensity={1} />
-        <primitive object={gltf.scene} position={[0, 0, 0]} />
+        <Model />
         <OrbitControls
           target={[0, 1, 0]}
           enableZoom={false}
