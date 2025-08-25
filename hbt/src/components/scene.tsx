@@ -33,7 +33,12 @@ const Scene: React.FC = () => {
   const Model = () => {
     const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
     return (
-      <primitive object={gltf.scene} position={[0, 0, 0]} scale={[2, 2, 2]} />
+      <primitive
+        object={gltf.scene}
+        position={[0, 0, 0]}
+        scale={[2, 2, 2]}
+        rotation={[0, Math.PI / 2, 0]}
+      />
     );
   };
 

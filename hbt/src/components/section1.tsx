@@ -1,5 +1,6 @@
 import React from "react";
 import Scene from "@/components/scene";
+import { motion } from "framer-motion";
 import {
   Card,
   CardAction,
@@ -11,10 +12,38 @@ import {
 } from "@/components/ui/card";
 
 export default function Section1() {
+  const leftSlideVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
+
+  const rightSlideVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
+
   return (
     <div className="h-[600px] w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
       {/* Left side - Stacked cards */}
-      <div className="w-1/3 p-4 space-y-4">
+      <motion.div
+        className="w-1/3 p-4 space-y-4"
+        variants={leftSlideVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <Card>
           <CardHeader>
             <CardTitle className="text-center">Call Center</CardTitle>
@@ -40,12 +69,18 @@ export default function Section1() {
             <p>Saturday: 8:00 AM - 12:00 PM</p>
           </CardFooter>
         </Card>
-      </div>
+      </motion.div>
 
       {/* Right side - 3D Truck Model */}
-      <div className="w-2/3 flex justify-center min-w-0">
+      <motion.div
+        className="w-2/3 flex justify-center min-w-0"
+        variants={rightSlideVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <Scene />
-      </div>
+      </motion.div>
     </div>
   );
 }

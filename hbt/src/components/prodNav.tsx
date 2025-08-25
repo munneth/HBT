@@ -41,7 +41,7 @@ export default function ProdNav() {
                 href="/application"
                 className="px-6 py-3 text-lg font-semibold text-black hover:text-gray-600 transition-colors"
               >
-                Application
+                Content
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -51,17 +51,17 @@ export default function ProdNav() {
                 href="/contact"
                 className="px-6 py-3 text-lg font-semibold text-black hover:text-gray-600 transition-colors"
               >
-                Contact
+                About Us
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link
-                href="/about"
+                href="/application"
                 className="px-6 py-3 text-lg font-semibold text-black hover:text-gray-600 transition-colors"
               >
-                About Us
+                Apply
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
