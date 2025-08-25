@@ -14,30 +14,46 @@ export default function ProdNav() {
   return (
     <div className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50">
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList className="text-lg font-semibold">
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/">Home</Link>
+              <Link href="/" className="px-6 py-3 text-lg font-semibold">
+                Home
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/resources">Resources</Link>
+              <Link
+                href="/resources"
+                className="px-6 py-3 text-lg font-semibold"
+              >
+                Resources
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/application">Application</Link>
+              <Link
+                href="/application"
+                className="px-6 py-3 text-lg font-semibold"
+              >
+                Application
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact" className="px-6 py-3 text-lg font-semibold">
+                Contact
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <Link href="/about">About Us</Link>
+              <Link href="/about" className="px-6 py-3 text-lg font-semibold">
+                About Us
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
