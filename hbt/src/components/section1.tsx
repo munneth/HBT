@@ -12,8 +12,9 @@ import {
 
 export default function Section1() {
   return (
-    <div className="h-96 w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
-      <div className="w-1/4 p-2">
+    <div className="h-[600px] w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
+      {/* Left side - Stacked cards */}
+      <div className="w-1/3 p-4 space-y-4">
         <Card>
           <CardHeader>
             <CardTitle className="text-center">Call Center</CardTitle>
@@ -26,11 +27,7 @@ export default function Section1() {
             <p>Fax: 530-111-1111</p>
           </CardFooter>
         </Card>
-      </div>
-      <div className="w-1/3 flex justify-center min-w-0">
-        <Scene />
-      </div>
-      <div className="w-1/4 p-2">
+
         <Card>
           <CardHeader>
             <CardTitle className="text-center">Hours</CardTitle>
@@ -43,6 +40,11 @@ export default function Section1() {
             <p>Saturday: 8:00 AM - 12:00 PM</p>
           </CardFooter>
         </Card>
+      </div>
+
+      {/* Right side - 3D Truck Model */}
+      <div className="w-2/3 flex justify-center min-w-0">
+        <Scene />
       </div>
     </div>
   );

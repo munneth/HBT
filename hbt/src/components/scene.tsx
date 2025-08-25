@@ -32,11 +32,13 @@ const Scene: React.FC = () => {
   // Only define Model component on client side
   const Model = () => {
     const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
-    return <primitive object={gltf.scene} position={[0, 0, 0]} />;
+    return (
+      <primitive object={gltf.scene} position={[0, 0, 0]} scale={[2, 2, 2]} />
+    );
   };
 
   return (
-    <div style={{ width: "100%", height: "700px" }}>
+    <div style={{ width: "100%", height: "500px" }}>
       <Suspense
         fallback={
           <div
@@ -53,8 +55,8 @@ const Scene: React.FC = () => {
         }
       >
         <Canvas
-          camera={{ position: [0, 5, 50] }}
-          style={{ width: "100%", height: "100%" }}
+          camera={{ position: [0, 4, 30] }}
+          style={{ width: "100%", height: "150%" }}
         >
           <directionalLight
             position={[-1.3, 6.0, 4.4]}
@@ -64,7 +66,7 @@ const Scene: React.FC = () => {
           <Suspense fallback={<Loader />}>
             <Model />
           </Suspense>
-          <OrbitControls target={[0, 1, 0]} enableZoom={false} />
+          <OrbitControls target={[0, 2, 0]} enableZoom={true} />
         </Canvas>
       </Suspense>
     </div>
