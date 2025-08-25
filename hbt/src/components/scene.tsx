@@ -18,11 +18,6 @@ function Loader() {
   return <Html center>{progress} % loaded</Html>;
 }
 
-function Model() {
-  const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
-  return <primitive object={gltf.scene} position={[0, 0, 0]} />;
-}
-
 const Scene: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -33,6 +28,12 @@ const Scene: React.FC = () => {
   if (!isClient) {
     return <div>Loading 3D Model...</div>;
   }
+
+  // Only define Model component on client side
+  const Model = () => {
+    const gltf = useLoader(GLTFLoader, "/models/peterbilt_379.glb");
+    return <primitive object={gltf.scene} position={[0, 0, 0]} />;
+  };
 
   return (
     <div style={{ width: "100%", height: "700px" }}>
