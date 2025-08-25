@@ -23,8 +23,14 @@ export default function Partners() {
     { id: 5, name: "Partner 5", image: "/partners/partner5.png" },
   ];
 
-  // Duplicate the partners array to create seamless infinite scroll
-  const duplicatedPartners = [...partners, ...partners, ...partners];
+  // Create infinite scroll by duplicating the array multiple times
+  const infinitePartners = [
+    ...partners,
+    ...partners,
+    ...partners,
+    ...partners,
+    ...partners,
+  ];
 
   useEffect(() => {
     if (isHovered) return; // Pause when hovered
@@ -32,13 +38,13 @@ export default function Partners() {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
-        // Reset to beginning when we reach the end of the original array
-        if (nextIndex >= partners.length) {
-          return 0;
+        // Reset to beginning of middle set when reaching end
+        if (nextIndex >= partners.length * 3) {
+          return partners.length * 2;
         }
         return nextIndex;
       });
-    }, 3000); // Move every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isHovered, partners.length]);
@@ -49,6 +55,19 @@ export default function Partners() {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+
+  const handleDotClick = (index: number) => {
+    setCurrentIndex(index + partners.length * 2); // Start from middle set
+  };
+
+  // Get the previous and next partner indices for the side cards
+  const getPreviousIndex = (current: number) => {
+    return current - 1;
+  };
+
+  const getNextIndex = (current: number) => {
+    return current + 1;
   };
 
   return (
@@ -64,46 +83,103 @@ export default function Partners() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div
-            className="flex transition-transform duration-1000 ease-in-out"
-            style={{
-              transform: `translateX(-${
-                currentIndex * (100 / partners.length)
-              }%)`,
-            }}
-          >
-            {duplicatedPartners.map((partner, index) => (
-              <div
-                key={`${partner.id}-${index}`}
-                className="flex-shrink-0 w-64 h-32 mx-4 bg-white rounded-lg shadow-md flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105"
-              >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src={partner.image}
-                    alt={partner.name}
-                    width={200}
-                    height={100}
-                    className="object-contain max-w-full max-h-full"
-                    onError={(e) => {
-                      // Fallback for missing images
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.parentElement!.innerHTML = `
-                        <div class="text-gray-500 text-center">
-                          <div class="text-4xl mb-2">🏢</div>
-                          <div class="text-sm">${partner.name}</div>
-                        </div>
-                      `;
-                    }}
-                  />
-                </div>
+          <div className="flex items-center justify-center space-x-8">
+            {/* Left Partner (Previous) */}
+            <div className="w-48 h-24 bg-white rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={
+                    infinitePartners[getPreviousIndex(currentIndex)]?.image ||
+                    partners[0].image
+                  }
+                  alt={
+                    infinitePartners[getPreviousIndex(currentIndex)]?.name ||
+                    partners[0].name
+                  }
+                  width={150}
+                  height={75}
+                  className="object-contain max-w-full max-h-full transition-transform duration-500 ease-in-out"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    target.parentElement!.innerHTML = `
+                      <div class="text-gray-500 text-center transition-all duration-500 ease-in-out">
+                        <div class="text-2xl mb-1">🏢</div>
+                        <div class="text-xs">${
+                          infinitePartners[getPreviousIndex(currentIndex)]
+                            ?.name || partners[0].name
+                        }</div>
+                      </div>
+                    `;
+                  }}
+                />
               </div>
-            ))}
+            </div>
+
+            {/* Center Partner (Current) */}
+            <div className="w-80 h-40 bg-white rounded-lg shadow-lg flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-xl hover:scale-105 transform">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={
+                    infinitePartners[currentIndex]?.image || partners[0].image
+                  }
+                  alt={infinitePartners[currentIndex]?.name || partners[0].name}
+                  width={300}
+                  height={150}
+                  className="object-contain max-w-full max-h-full transition-transform duration-500 ease-in-out"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    target.parentElement!.innerHTML = `
+                      <div class="text-gray-500 text-center transition-all duration-500 ease-in-out">
+                        <div class="text-4xl mb-2">🏢</div>
+                        <div class="text-sm">${
+                          infinitePartners[currentIndex]?.name ||
+                          partners[0].name
+                        }</div>
+                      </div>
+                    `;
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Right Partner (Next) */}
+            <div className="w-48 h-24 bg-white rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={
+                    infinitePartners[getNextIndex(currentIndex)]?.image ||
+                    partners[0].image
+                  }
+                  alt={
+                    infinitePartners[getNextIndex(currentIndex)]?.name ||
+                    partners[0].name
+                  }
+                  width={150}
+                  height={75}
+                  className="object-contain max-w-full max-h-full transition-transform duration-500 ease-in-out"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    target.parentElement!.innerHTML = `
+                      <div class="text-gray-500 text-center transition-all duration-500 ease-in-out">
+                        <div class="text-2xl mb-1">🏢</div>
+                        <div class="text-xs">${
+                          infinitePartners[getNextIndex(currentIndex)]?.name ||
+                          partners[0].name
+                        }</div>
+                      </div>
+                    `;
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Hover indicator */}
           {isHovered && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 text-white px-4 py-2 rounded-lg text-sm">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 ease-in-out animate-pulse">
               Paused
             </div>
           )}
@@ -114,10 +190,10 @@ export default function Partners() {
           {partners.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                index === currentIndex
-                  ? "bg-blue-600"
+              onClick={() => handleDotClick(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
+                currentIndex % partners.length === index
+                  ? "bg-blue-600 scale-110"
                   : "bg-gray-300 hover:bg-gray-400"
               }`}
               aria-label={`Go to partner ${index + 1}`}
