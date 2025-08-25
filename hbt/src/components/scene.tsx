@@ -7,7 +7,7 @@ import React, { Suspense, useRef } from "react";
 import * as THREE from "three";
 
 const Model: React.FC = () => {
-  const gltf = useGLTF("/models/peterbilt_379.glb");
+  const gltf = useGLTF("/models/scene.gltf");
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
@@ -21,7 +21,7 @@ const Model: React.FC = () => {
 
 const Scene: React.FC = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading 3D Model...</div>}>
       <Canvas
         camera={{ position: [0, 5, 25] }}
         style={{ width: "100%", height: "700px" }}
