@@ -9,10 +9,11 @@ export default function Home() {
     <>
       <Header />
       {/* Main Content */}
-      <div className="h-screen w-full overflow-hidden -mt-35">
+      <div className="w-full overflow-hidden">
         <Section1 />
       </div>
-      <div className="h-screen w-full overflow-hidden -mt-35">
+      {/* Partners Section */}
+      <div className="w-full">
         <Partners />
       </div>
     </>

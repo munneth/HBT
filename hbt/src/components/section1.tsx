@@ -12,7 +12,7 @@ import {
 
 export default function Section1() {
   return (
-    <div className="h-screen w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
+    <div className="h-96 w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
       <div className="w-1/4 p-2">
         <Card>
           <CardHeader>
