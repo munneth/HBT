@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function ProdNav() {
   return (
-    <div className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50">
+    <div className="fixed top-15 left-1/2 transform -translate-x-1/2 z-50">
       <NavigationMenu>
         <NavigationMenuList className="text-lg font-semibold">
           <NavigationMenuItem>
