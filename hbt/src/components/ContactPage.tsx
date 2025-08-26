@@ -12,9 +12,9 @@ const ContactPage: React.FC = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to get started? Have questions about our services? We'd love
-            to hear from you. Send us a message and we'll respond as soon as
-            possible.
+            Ready to get started? Have questions about our services? We&apos;d
+            love to hear from you. Send us a message and we&apos;ll respond as
+            soon as possible.
           </p>
         </div>
 
