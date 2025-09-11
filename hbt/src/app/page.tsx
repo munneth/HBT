@@ -5,6 +5,8 @@ import Section1 from "@/components/section1";
 import Partners from "@/components/partners";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -12,23 +14,41 @@ export default function Home() {
       <Header />
       {/* Hero Section */}
       <div
-        className="w-full h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
+        className="w-full h-96 bg-cover bg-center bg-no-repeat flex items-center relative"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       >
         <div className="absolute inset-0 bg-gray-900 bg-opacity-30"></div>
-        <div className="text-center text-white relative z-10">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">
-            Welcome to HBT
-          </h1>
-          <p className="text-xl drop-shadow-lg mb-8">
-            Your trusted partner in excellence
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 transform hover:scale-105 drop-shadow-lg"
+        <div className="w-full max-w-6xl mx-auto px-8 flex items-center justify-between relative z-10">
+          {/* Left side - Welcome message */}
+          <div className="text-white">
+            <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">
+              Welcome to HBT
+            </h1>
+            <p className="text-xl drop-shadow-lg mb-8">
+              Your trusted partner in excellence
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 transform hover:scale-105 drop-shadow-lg"
+            >
+              Contact Now
+            </Link>
+          </div>
+          {/* Right side - Truck image */}
+          <motion.div
+            className="flex-shrink-0"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Contact Now
-          </Link>
+            <Image
+              src="/models/truck_image.png"
+              alt="Truck"
+              width={400}
+              height={300}
+              className="drop-shadow-lg"
+            />
+          </motion.div>
         </div>
       </div>
       {/* Partners Section */}
