@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 text-black">
+    <footer className="bg-gray-50 text-gray-700">
       {/* Main Footer Section - All in one line */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
@@ -21,7 +21,7 @@ export default function Footer() {
                 className="w-12 h-12"
               />
             </div>
-            <div className="text-black uppercase font-bold">
+            <div className="text-gray-800 uppercase font-bold">
               <div>HBT</div>
               <div className="text-sm">TRUCKING</div>
             </div>
@@ -31,35 +31,35 @@ export default function Footer() {
           <div className="flex items-center space-x-6">
             <Link
               href="/"
-              className="text-black uppercase hover:text-gray-600 transition-colors"
+              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               Home
             </Link>
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="w-px h-6 bg-gray-200"></div>
             <Link
               href="/resources"
-              className="text-black uppercase hover:text-gray-600 transition-colors"
+              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               Resources
             </Link>
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="w-px h-6 bg-gray-200"></div>
             <Link
               href="/application"
-              className="text-black uppercase hover:text-gray-600 transition-colors"
+              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               Application
             </Link>
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="w-px h-6 bg-gray-200"></div>
             <Link
               href="/contact"
-              className="text-black uppercase hover:text-gray-600 transition-colors"
+              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               Contact
             </Link>
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="w-px h-6 bg-gray-200"></div>
             <Link
               href="/about"
-              className="text-black uppercase hover:text-gray-600 transition-colors"
+              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               About Us
             </Link>
@@ -70,10 +70,10 @@ export default function Footer() {
             {/* Social Media Icons */}
             <a
               href="#"
-              className="bg-gray-200 p-2 rounded hover:bg-gray-300 transition-colors"
+              className="bg-gray-100 p-2 rounded hover:bg-gray-200 transition-colors"
             >
               <svg
-                className="w-4 h-4 text-black"
+                className="w-4 h-4 text-gray-600"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -82,10 +82,10 @@ export default function Footer() {
             </a>
             <a
               href="#"
-              className="bg-gray-200 p-2 rounded hover:bg-gray-300 transition-colors"
+              className="bg-gray-100 p-2 rounded hover:bg-gray-200 transition-colors"
             >
               <svg
-                className="w-4 h-4 text-black"
+                className="w-4 h-4 text-gray-600"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -94,14 +94,14 @@ export default function Footer() {
             </a>
 
             {/* Address */}
-            <div className="text-black text-sm">
+            <div className="text-gray-600 text-sm">
               <p>4670 Sawtelle Ave, Yuba City, CA 95991</p>
             </div>
 
             {/* Call to Action Button */}
             <Link
               href="/contact"
-              className="bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded transition-colors"
+              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded transition-colors"
             >
               Contact Us
             </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section - Copyright */}
-      <div className="border-t border-gray-300">
+      <div className="border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center">
             <div className="flex items-center space-x-2">
@@ -121,7 +121,7 @@ export default function Footer() {
                 height={20}
                 className="w-5 h-5"
               />
-              <span className="text-black text-sm">
+              <span className="text-gray-600 text-sm">
                 COPYRIGHT © 2025 HBT INC.
               </span>
             </div>

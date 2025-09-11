@@ -71,7 +71,7 @@ export default function Partners() {
   };
 
   return (
-    <div className="w-full bg-gray-100 py-12">
+    <div className="w-full bg-white py-12">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Our Partners
@@ -85,7 +85,7 @@ export default function Partners() {
         >
           <div className="flex items-center justify-center space-x-8">
             {/* Left Partner (Previous) */}
-            <div className="w-48 h-24 bg-white rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
+            <div className="w-48 h-24 bg-gray-100 rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={
@@ -117,7 +117,7 @@ export default function Partners() {
             </div>
 
             {/* Center Partner (Current) */}
-            <div className="w-80 h-40 bg-white rounded-lg shadow-lg flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-xl hover:scale-105 transform">
+            <div className="w-80 h-40 bg-gray-100 rounded-lg shadow-lg flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-xl hover:scale-105 transform">
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={
@@ -145,7 +145,7 @@ export default function Partners() {
             </div>
 
             {/* Right Partner (Next) */}
-            <div className="w-48 h-24 bg-white rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
+            <div className="w-48 h-24 bg-gray-100 rounded-lg shadow-md flex items-center justify-center transition-all duration-700 ease-in-out hover:shadow-lg hover:scale-105 opacity-60 transform hover:opacity-80">
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={
@@ -193,7 +193,7 @@ export default function Partners() {
               onClick={() => handleDotClick(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 ${
                 currentIndex % partners.length === index
-                  ? "bg-blue-600 scale-110"
+                  ? "bg-gray-600 scale-110"
                   : "bg-gray-300 hover:bg-gray-400"
               }`}
               aria-label={`Go to partner ${index + 1}`}

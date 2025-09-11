@@ -35,7 +35,7 @@ export default function Section1() {
   };
 
   return (
-    <div className="h-[600px] w-full flex flex-row justify-center items-center overflow-hidden max-w-full">
+    <div className="h-[600px] w-full flex flex-row justify-center items-center overflow-hidden max-w-full bg-gray-800">
       {/* Left side - Stacked cards */}
       <motion.div
         className="w-1/3 p-4 space-y-4"
@@ -44,29 +44,31 @@ export default function Section1() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <Card>
+        <Card className="bg-gray-700 border-gray-600 text-white">
           <CardHeader>
-            <CardTitle className="text-center">Call Center</CardTitle>
+            <CardTitle className="text-center text-white">
+              Call Center
+            </CardTitle>
             {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
           <CardContent>
-            <p>Phone Number: 530-111-1111</p>
+            <p className="text-gray-200">Phone Number: 530-111-1111</p>
           </CardContent>
           <CardFooter>
-            <p>Fax: 530-111-1111</p>
+            <p className="text-gray-200">Fax: 530-111-1111</p>
           </CardFooter>
         </Card>
 
-        <Card>
+        <Card className="bg-gray-700 border-gray-600 text-white">
           <CardHeader>
-            <CardTitle className="text-center">Hours</CardTitle>
+            <CardTitle className="text-center text-white">Hours</CardTitle>
             {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
           <CardContent>
-            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+            <p className="text-gray-200">Monday - Friday: 8:00 AM - 5:00 PM</p>
           </CardContent>
           <CardFooter>
-            <p>Saturday: 8:00 AM - 12:00 PM</p>
+            <p className="text-gray-200">Saturday: 8:00 AM - 12:00 PM</p>
           </CardFooter>
         </Card>
       </motion.div>
