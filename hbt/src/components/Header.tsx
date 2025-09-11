@@ -5,22 +5,31 @@ import ProdNav from "@/components/prodNav";
 
 export default function Header() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-      <div className="flex items-center justify-between p-4 text-black">
-        <div className="flex items-center gap-4">
-          <Image
-            src="/logo.png"
-            alt="logo"
-            width={60}
-            height={60}
-            className="md:w-[100px] md:h-[100px]"
-          />
+    <>
+      {/* Top section with logo and contact info - static position */}
+      <div className="bg-white flex items-center justify-center px-8 py-4">
+        <div className="flex items-center justify-between w-full max-w-2xl">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={80}
+              height={80}
+              className="md:w-[120px] md:h-[120px]"
+            />
+          </div>
+          <div className="flex flex-col items-end text-sm">
+            <div className="font-semibold text-gray-800">
+              Call Us: 530-111-1111
+            </div>
+            <div className="text-gray-600">info@hbt.com</div>
+          </div>
         </div>
-        <div className="flex-1 flex justify-center">
-          <ProdNav />
-        </div>
-        <div className="w-[100px]"></div> {/* Spacer to balance the logo */}
       </div>
-    </div>
+      {/* Navigation bar section - sticky position */}
+      <div className="sticky top-0 z-50 flex justify-center">
+        <ProdNav />
+      </div>
+    </>
   );
 }

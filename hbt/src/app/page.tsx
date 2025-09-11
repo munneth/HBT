@@ -12,7 +12,7 @@ export default function Home() {
       <Header />
       {/* Hero Section */}
       <div
-        className="w-full h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center relative mt-20"
+        className="w-full h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       >
         <div className="absolute inset-0 bg-gray-900 bg-opacity-30"></div>
