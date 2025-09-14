@@ -22,10 +22,10 @@ export default function Home() {
           {/* Left side - Welcome message */}
           <div className="text-white">
             <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">
-              Welcome to HBT
+              Welcome to HBT Inc.
             </h1>
             <p className="text-xl drop-shadow-lg mb-8">
-              Your trusted partner in excellence
+              reliable freight, delivered fast
             </p>
             <Link
               href="/contact"
@@ -44,8 +44,8 @@ export default function Home() {
             <Image
               src="/models/truck_image.png"
               alt="Truck"
-              width={400}
-              height={300}
+              width={500}
+              height={375}
               className="drop-shadow-lg"
             />
           </motion.div>
