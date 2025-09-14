@@ -6,7 +6,7 @@ import Partners from "@/components/partners";
 import Footer from "@/components/footer";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Home() {
   return (
@@ -20,7 +20,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-gray-900 bg-opacity-30"></div>
         <div className="w-full max-w-6xl mx-auto px-8 flex items-center justify-between relative z-10">
           {/* Left side - Welcome message */}
-          <div className="text-white">
+          <motion.div
+            className="text-white"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
             <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">
               Welcome to HBT Inc.
             </h1>
@@ -33,7 +38,7 @@ export default function Home() {
             >
               Contact Now
             </Link>
-          </div>
+          </motion.div>
           {/* Right side - Truck image */}
           <motion.div
             className="flex-shrink-0"
