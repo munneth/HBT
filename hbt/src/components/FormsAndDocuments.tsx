@@ -43,7 +43,13 @@ const FormsAndDocuments: React.FC = () => {
       title: "W-9",
       description:
         "The W-9 is a request for Taxpayer Identification Number and Certification",
-      href: "/Kami Export - fw9 (2).pdf",
+      href: "/w-9.pdf",
+    },
+    {
+      title: "Proof of Insurance",
+      description:
+        "Proof of Insurance displays the company's coverage for commercial liability, automobile liability, motor truck cargo, and umbrella coverage",
+      href: "/ProofOfInsurance.pdf",
     },
     {
       title: "Directory",
