@@ -40,6 +40,12 @@ const FormsAndDocuments: React.FC = () => {
       href: "/HBT INC_authorityLetter.pdf",
     },
     {
+      title: "W-9",
+      description:
+        "The W-9 is a request for Taxpayer Identification Number and Certification",
+      href: "/Kami Export - fw9 (2).pdf",
+    },
+    {
       title: "Directory",
       description:
         "Quickly access important contact information such as phone numbers, extensions, and emails of specific employees, in a printable format",
