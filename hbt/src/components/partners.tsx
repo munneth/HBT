@@ -20,7 +20,6 @@ export default function Partners() {
     { id: 2, name: "Partner 2", image: "/partners/partner2.png" },
     { id: 3, name: "Partner 3", image: "/partners/partner3.png" },
     { id: 4, name: "Partner 4", image: "/partners/partner4.png" },
-    { id: 5, name: "Partner 5", image: "/partners/partner5.png" },
   ];
 
   // Create infinite scroll by duplicating the array multiple times
