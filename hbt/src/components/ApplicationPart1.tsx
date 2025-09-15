@@ -33,7 +33,7 @@ const ApplicationPart1: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <form className="space-y-6">
       {/* Personal Information Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -354,7 +354,7 @@ const ApplicationPart1: React.FC = () => {
       <p className="text-sm text-gray-500 mt-4">
         Use backside of sheet for additional addresses
       </p>
-    </div>
+    </form>
   );
 };
 
