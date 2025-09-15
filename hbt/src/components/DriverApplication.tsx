@@ -4,12 +4,6 @@ import React, { useState } from "react";
 import ApplicationPart1 from "./ApplicationPart1";
 
 const DriverApplication: React.FC = () => {
-  const [formData, setFormData] = useState<any>({});
-
-  const handleFormDataChange = (data: any) => {
-    setFormData(data);
-  };
-
   const handleGeneratePDF = async () => {
     try {
       const response = await fetch("/api/generate-pdf", {
@@ -17,22 +11,11 @@ const DriverApplication: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          firstName: "John",
+          lastName: "Doe",
+        }),
       });
-
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "driver-application.pdf";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      } else {
-        console.error("Failed to generate PDF");
-      }
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -45,7 +28,7 @@ const DriverApplication: React.FC = () => {
           Driver Application
         </h1>
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <ApplicationPart1 onFormDataChange={handleFormDataChange} />
+          <ApplicationPart1 />
           <div className="mt-8 flex justify-center">
             <button
               onClick={handleGeneratePDF}

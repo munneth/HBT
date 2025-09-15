@@ -1,10 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const ApplicationPart1: React.FC = () => {
+  type FormInputs = {
+    date: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    dateOfBirth: string;
+    homeTelephone: string;
+    cellularTelephone: string;
+    socialSecurityNumber: string;
+    prevAddress1Street: string;
+    prevAddress1City: string;
+    prevAddress1State: string;
+    prevAddress1Zip: string;
+    prevAddress1DatesFrom: string;
+    prevAddress1DatesTo: string;
+    prevAddress2Street: string;
+    prevAddress2City: string;
+    prevAddress2State: string;
+    prevAddress2Zip: string;
+    prevAddress2DatesFrom: string;
+    prevAddress2DatesTo: string;
+    prevAddress3Street: string;
+    prevAddress3City: string;
+    prevAddress3State: string;
+    prevAddress3Zip: string;
+    prevAddress3DatesFrom: string;
+    prevAddress3DatesTo: string;
+  };
   const [homePhone, setHomePhone] = useState("");
   const [cellularPhone, setCellularPhone] = useState("");
+  const { register, getValues } = useForm<FormInputs>();
 
   const formatPhoneNumber = (value: string) => {
     // Remove all non-numeric characters
@@ -46,7 +80,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="date"
             id="date"
-            name="date"
+            {...register("date")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -64,7 +98,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="firstName"
-            name="firstName"
+            {...register("firstName")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -79,7 +113,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="middleName"
-            name="middleName"
+            {...register("middleName")}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
@@ -93,7 +127,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="lastName"
-            name="lastName"
+            {...register("lastName")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -110,7 +144,7 @@ const ApplicationPart1: React.FC = () => {
         <input
           type="text"
           id="address"
-          name="address"
+          {...register("address")}
           required
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
         />
@@ -127,7 +161,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="city"
-            name="city"
+            {...register("city")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -142,7 +176,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="state"
-            name="state"
+            {...register("state")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -157,7 +191,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="text"
             id="zip"
-            name="zip"
+            {...register("zip")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -175,7 +209,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="date"
             id="dateOfBirth"
-            name="dateOfBirth"
+            {...register("dateOfBirth")}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
@@ -190,7 +224,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="tel"
             id="homeTelephone"
-            name="homeTelephone"
+            {...register("homeTelephone")}
             value={homePhone}
             onChange={(e) => handlePhoneChange(e.target.value, setHomePhone)}
             placeholder="(555)-123-4567"
@@ -212,7 +246,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="tel"
             id="cellularTelephone"
-            name="cellularTelephone"
+            {...register("cellularTelephone")}
             value={cellularPhone}
             onChange={(e) =>
               handlePhoneChange(e.target.value, setCellularPhone)
@@ -232,7 +266,7 @@ const ApplicationPart1: React.FC = () => {
           <input
             type="password"
             id="socialSecurityNumber"
-            name="socialSecurityNumber"
+            {...register("socialSecurityNumber")}
             placeholder="123456789"
             maxLength={9}
             required
@@ -269,7 +303,7 @@ const ApplicationPart1: React.FC = () => {
               <input
                 type="text"
                 id={`prevAddress${index}Street`}
-                name={`prevAddress${index}Street`}
+                {...register(`prevAddress${index}Street` as keyof FormInputs)}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
               />
             </div>
@@ -284,7 +318,7 @@ const ApplicationPart1: React.FC = () => {
                 <input
                   type="text"
                   id={`prevAddress${index}City`}
-                  name={`prevAddress${index}City`}
+                  {...register(`prevAddress${index}City` as keyof FormInputs)}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 />
               </div>
@@ -298,7 +332,7 @@ const ApplicationPart1: React.FC = () => {
                 <input
                   type="text"
                   id={`prevAddress${index}State`}
-                  name={`prevAddress${index}State`}
+                  {...register(`prevAddress${index}State` as keyof FormInputs)}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 />
               </div>
@@ -312,7 +346,7 @@ const ApplicationPart1: React.FC = () => {
                 <input
                   type="text"
                   id={`prevAddress${index}Zip`}
-                  name={`prevAddress${index}Zip`}
+                  {...register(`prevAddress${index}Zip` as keyof FormInputs)}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 />
               </div>
@@ -328,7 +362,9 @@ const ApplicationPart1: React.FC = () => {
                 <input
                   type="date"
                   id={`prevAddress${index}DatesFrom`}
-                  name={`prevAddress${index}DatesFrom`}
+                  {...register(
+                    `prevAddress${index}DatesFrom` as keyof FormInputs
+                  )}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 />
               </div>
@@ -342,7 +378,9 @@ const ApplicationPart1: React.FC = () => {
                 <input
                   type="date"
                   id={`prevAddress${index}DatesTo`}
-                  name={`prevAddress${index}DatesTo`}
+                  {...register(
+                    `prevAddress${index}DatesTo` as keyof FormInputs
+                  )}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 />
               </div>
@@ -351,9 +389,16 @@ const ApplicationPart1: React.FC = () => {
         ))}
       </div>
 
-      <p className="text-sm text-gray-500 mt-4">
-        Use backside of sheet for additional addresses
-      </p>
+      <button
+        type="button"
+        onClick={() => {
+          const values = getValues();
+          const singleValue = getValues("date");
+          const multipleValues = getValues(["firstName", "date"]);
+        }}
+      >
+        Submit
+      </button>
     </form>
   );
 };
