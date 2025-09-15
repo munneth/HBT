@@ -36,35 +36,7 @@ const ApplicationPart1: React.FC = () => {
     prevAddress3DatesFrom: string;
     prevAddress3DatesTo: string;
   };
-  const [homePhone, setHomePhone] = useState("");
-  const [cellularPhone, setCellularPhone] = useState("");
   const { register, getValues } = useForm<FormInputs>();
-
-  const formatPhoneNumber = (value: string) => {
-    // Remove all non-numeric characters
-    const phoneNumber = value.replace(/\D/g, "");
-
-    // Format as (XXX)-XXX-XXXX
-    if (phoneNumber.length >= 6) {
-      return `(${phoneNumber.slice(0, 3)})-${phoneNumber.slice(
-        3,
-        6
-      )}-${phoneNumber.slice(6, 10)}`;
-    } else if (phoneNumber.length >= 3) {
-      return `(${phoneNumber.slice(0, 3)})-${phoneNumber.slice(3)}`;
-    } else if (phoneNumber.length > 0) {
-      return `(${phoneNumber}`;
-    }
-    return phoneNumber;
-  };
-
-  const handlePhoneChange = (
-    value: string,
-    setter: (value: string) => void
-  ) => {
-    const formatted = formatPhoneNumber(value);
-    setter(formatted);
-  };
 
   return (
     <form className="space-y-6">
@@ -225,8 +197,6 @@ const ApplicationPart1: React.FC = () => {
             type="tel"
             id="homeTelephone"
             {...register("homeTelephone")}
-            value={homePhone}
-            onChange={(e) => handlePhoneChange(e.target.value, setHomePhone)}
             placeholder="(555)-123-4567"
             maxLength={14}
             required
@@ -247,10 +217,6 @@ const ApplicationPart1: React.FC = () => {
             type="tel"
             id="cellularTelephone"
             {...register("cellularTelephone")}
-            value={cellularPhone}
-            onChange={(e) =>
-              handlePhoneChange(e.target.value, setCellularPhone)
-            }
             placeholder="(555)-123-4567"
             maxLength={14}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -392,9 +358,11 @@ const ApplicationPart1: React.FC = () => {
       <button
         type="button"
         onClick={() => {
-          const values = getValues();
-          const singleValue = getValues("date");
-          const multipleValues = getValues(["firstName", "date"]);
+          const allValues = getValues();
+          const formDataHashMap = {
+            allValues,
+          };
+          console.log("Form Data HashMap:", formDataHashMap);
         }}
       >
         Submit
