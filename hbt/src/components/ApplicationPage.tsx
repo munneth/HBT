@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import ApplicationForm from "./ApplicationForm";
-import ApplicationInfo from "./ApplicationInfo";
 
 const ApplicationPage: React.FC = () => {
   return (
@@ -24,14 +22,6 @@ const ApplicationPage: React.FC = () => {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Application Form */}
-          <div>
-            <ApplicationForm />
-          </div>
-
-          {/* Application Information */}
-          <div>
-            <ApplicationInfo />
-          </div>
         </div>
 
         {/* Additional Info Section */}

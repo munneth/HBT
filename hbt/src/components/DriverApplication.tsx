@@ -59,6 +59,7 @@ const DriverApplication: React.FC = () => {
         },
         body: JSON.stringify(formData),
       });
+      console.log("Posted");
     } catch (error) {
       console.error("Error generating PDF:", error);
     }

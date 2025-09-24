@@ -22,10 +22,7 @@ async function generatePDF(input: string, output: string) {
     console.error(error);
   }
 }
-generatePDF(
-  "./public/pdf.net_DRIVER-APPLICATION-Test-1 (1).pdf",
-  "appFilled.pdf"
-);
+generatePDF("./public/application_revised.pdf", "appFilled.pdf");
 export async function POST(request: Request) {
   try {
     const body = await request.json();
