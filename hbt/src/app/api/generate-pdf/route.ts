@@ -114,6 +114,9 @@ async function generatePDF(input: string, output: string, formData: FormData) {
       }
     }
 
+    // Flatten the form (make it no longer editable)
+    form.flatten();
+
     const pdfBytes = await pdfDoc.save();
     await writeFile(output, pdfBytes);
 
