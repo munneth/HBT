@@ -16,6 +16,13 @@ type Experience = {
   approxMileage: string;
 };
 
+type Accident = {
+  date: string;
+  description: string;
+  fatalities: string;
+  injuries: string;
+};
+
 export type ApplicationPart2Inputs = {
   license1: License;
   license2: License;
@@ -23,6 +30,9 @@ export type ApplicationPart2Inputs = {
   experience1: Experience;
   experience2: Experience;
   experience3: Experience;
+  accident1: Accident;
+  accident2: Accident;
+  accident3: Accident;
 };
 
 interface ApplicationPart2Props {
@@ -226,6 +236,108 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
                   {err?.approxMileage && (
                     <span className="text-red-500 text-sm">
                       {err.approxMileage.message as string}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 pt-4 border-t-2 border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">
+          All Accidents
+        </h2>
+        {[1, 2, 3].map((i) => {
+          const field = `accident${i}` as const;
+          const err: any = (errors as any)?.[field] || {};
+          return (
+            <div
+              key={field}
+              className="mb-6 p-4 border border-gray-200 rounded-md bg-gray-50"
+            >
+              <h3 className="text-md font-medium text-gray-700 mb-3">
+                Accident {i}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                  <label
+                    htmlFor={`${field}.date`}
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id={`${field}.date`}
+                    {...register(`${field}.date` as const)}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                  {err?.date && (
+                    <span className="text-red-500 text-sm">
+                      {err.date.message as string}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor={`${field}.description`}
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Description
+                  </label>
+                  <input
+                    type="text"
+                    id={`${field}.description`}
+                    {...register(`${field}.description` as const)}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                  {err?.description && (
+                    <span className="text-red-500 text-sm">
+                      {err.description.message as string}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor={`${field}.fatalities`}
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Fatalities
+                  </label>
+                  <input
+                    type="number"
+                    id={`${field}.fatalities`}
+                    min={0}
+                    step={1}
+                    {...register(`${field}.fatalities` as const)}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                  {err?.fatalities && (
+                    <span className="text-red-500 text-sm">
+                      {err.fatalities.message as string}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor={`${field}.injuries`}
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Injuries
+                  </label>
+                  <input
+                    type="number"
+                    id={`${field}.injuries`}
+                    min={0}
+                    step={1}
+                    {...register(`${field}.injuries` as const)}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                  {err?.injuries && (
+                    <span className="text-red-500 text-sm">
+                      {err.injuries.message as string}
                     </span>
                   )}
                 </div>

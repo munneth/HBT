@@ -42,6 +42,9 @@ type FormData = {
   experience1?: ApplicationPart2Inputs["experience1"];
   experience2?: ApplicationPart2Inputs["experience2"];
   experience3?: ApplicationPart2Inputs["experience3"];
+  accident1?: ApplicationPart2Inputs["accident1"];
+  accident2?: ApplicationPart2Inputs["accident2"];
+  accident3?: ApplicationPart2Inputs["accident3"];
 };
 
 const DriverApplication: React.FC = () => {
@@ -62,6 +65,9 @@ const DriverApplication: React.FC = () => {
       experience1: data.experience1,
       experience2: data.experience2,
       experience3: data.experience3,
+      accident1: data.accident1,
+      accident2: data.accident2,
+      accident3: data.accident3,
     }));
     setStep(1);
   };
