@@ -47,14 +47,13 @@ const LicenseFields: React.FC<{
             htmlFor={`${field}.state`}
             className="block text-sm font-medium text-gray-700"
           >
-            State <span className="text-red-500">*</span>
+            State
           </label>
           <input
             type="text"
             id={`${field}.state`}
             maxLength={2}
             {...register(`${field}.state` as const, {
-              required: "State is required",
               maxLength: { value: 2, message: "Use 2-letter code" },
             })}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -70,13 +69,12 @@ const LicenseFields: React.FC<{
             htmlFor={`${field}.number`}
             className="block text-sm font-medium text-gray-700"
           >
-            Number <span className="text-red-500">*</span>
+            Number
           </label>
           <input
             type="text"
             id={`${field}.number`}
             {...register(`${field}.number` as const, {
-              required: "License number is required",
               minLength: { value: 3, message: "Too short" },
             })}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -92,14 +90,12 @@ const LicenseFields: React.FC<{
             htmlFor={`${field}.expirationDate`}
             className="block text-sm font-medium text-gray-700"
           >
-            Expiration Date <span className="text-red-500">*</span>
+            Expiration Date
           </label>
           <input
             type="date"
             id={`${field}.expirationDate`}
-            {...register(`${field}.expirationDate` as const, {
-              required: "Expiration date is required",
-            })}
+            {...register(`${field}.expirationDate` as const)}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
           {err?.expirationDate && (
@@ -120,6 +116,8 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    clearErrors,
   } = useForm<ApplicationPart2Inputs>();
 
   return (
@@ -158,16 +156,12 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
                     htmlFor={`${field}.vehicleType`}
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Type of vehicle driven{" "}
-                    <span className="text-red-500">*</span>
+                    Type of vehicle driven
                   </label>
                   <input
                     type="text"
                     id={`${field}.vehicleType`}
-                    {...register(`${field}.vehicleType` as const, {
-                      required: "Vehicle type is required",
-                      minLength: { value: 2, message: "Too short" },
-                    })}
+                    {...register(`${field}.vehicleType` as const)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
                   {err?.vehicleType && (
@@ -181,14 +175,12 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
                     htmlFor={`${field}.startDate`}
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Dates: From <span className="text-red-500">*</span>
+                    Dates: From
                   </label>
                   <input
                     type="date"
                     id={`${field}.startDate`}
-                    {...register(`${field}.startDate` as const, {
-                      required: "Start date is required",
-                    })}
+                    {...register(`${field}.startDate` as const)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
                   {err?.startDate && (
@@ -202,14 +194,12 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
                     htmlFor={`${field}.endDate`}
                     className="block text-sm font-medium text-gray-700"
                   >
-                    To <span className="text-red-500">*</span>
+                    To
                   </label>
                   <input
                     type="date"
                     id={`${field}.endDate`}
-                    {...register(`${field}.endDate` as const, {
-                      required: "End date is required",
-                    })}
+                    {...register(`${field}.endDate` as const)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
                   {err?.endDate && (
@@ -223,18 +213,14 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
                     htmlFor={`${field}.approxMileage`}
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Approx. mileage driven{" "}
-                    <span className="text-red-500">*</span>
+                    Approx. mileage driven
                   </label>
                   <input
                     type="number"
                     id={`${field}.approxMileage`}
                     min={0}
                     step={1}
-                    {...register(`${field}.approxMileage` as const, {
-                      required: "Mileage is required",
-                      validate: (v) => (Number(v) >= 0 ? true : "Must be >= 0"),
-                    })}
+                    {...register(`${field}.approxMileage` as const)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
                   {err?.approxMileage && (
@@ -249,9 +235,52 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
         })}
       </div>
 
+      {((errors as any)?.license1?.state?.message ||
+        (errors as any)?.license2?.state?.message ||
+        (errors as any)?.license3?.state?.message) && (
+        <p className="text-red-600 text-sm">
+          {((errors as any)?.license1?.state?.message as string) ||
+            ((errors as any)?.license2?.state?.message as string) ||
+            ((errors as any)?.license3?.state?.message as string)}
+        </p>
+      )}
+
       <button
         type="submit"
         onClick={handleSubmit((data) => {
+          const licenses = [data.license1, data.license2, data.license3];
+          const anyFieldProvided = licenses.some(
+            (l) =>
+              (l.state && l.state.trim() !== "") ||
+              (l.number && l.number.trim() !== "") ||
+              (l.expirationDate && l.expirationDate !== "")
+          );
+          if (!anyFieldProvided) {
+            setError("license1.state" as any, {
+              type: "manual",
+              message:
+                "At least one license is required (state, number, expiration)",
+            });
+            return;
+          }
+          const anyComplete = licenses.some(
+            (l) =>
+              l.state &&
+              l.state.trim() !== "" &&
+              l.number &&
+              l.number.trim() !== "" &&
+              l.expirationDate &&
+              l.expirationDate !== ""
+          );
+          if (!anyComplete) {
+            setError("license1.state" as any, {
+              type: "manual",
+              message:
+                "Please complete one license: state, number, and expiration",
+            });
+            return;
+          }
+          clearErrors();
           if (onFormSubmit) onFormSubmit(data);
         })}
         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md"
