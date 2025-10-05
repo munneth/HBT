@@ -37,6 +37,7 @@ export type ApplicationPart2Inputs = {
 
 interface ApplicationPart2Props {
   onFormSubmit?: (data: ApplicationPart2Inputs) => void;
+  initialData?: Partial<ApplicationPart2Inputs>;
 }
 
 const LicenseFields: React.FC<{
@@ -121,6 +122,7 @@ const LicenseFields: React.FC<{
 
 const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
   onFormSubmit,
+  initialData,
 }) => {
   const {
     register,
@@ -128,7 +130,7 @@ const ApplicationPart2: React.FC<ApplicationPart2Props> = ({
     formState: { errors },
     setError,
     clearErrors,
-  } = useForm<ApplicationPart2Inputs>();
+  } = useForm<ApplicationPart2Inputs>({ defaultValues: initialData as any });
 
   return (
     <form className="space-y-6">

@@ -134,8 +134,18 @@ const DriverApplication: React.FC = () => {
           Driver Application
         </h1>
         <div className="bg-white rounded-lg shadow-lg p-8">
-          {step === 1 && <ApplicationPart1 onFormSubmit={handleFormSubmit} />}
-          {step === 2 && <ApplicationPart2 onFormSubmit={handlePart2Submit} />}
+          {step === 1 && (
+            <ApplicationPart1
+              onFormSubmit={handleFormSubmit}
+              initialData={formData || undefined}
+            />
+          )}
+          {step === 2 && (
+            <ApplicationPart2
+              onFormSubmit={handlePart2Submit}
+              initialData={formData || undefined}
+            />
+          )}
           {step === 2 && (
             <div className="mt-8 flex justify-between">
               <button
@@ -146,7 +156,12 @@ const DriverApplication: React.FC = () => {
               </button>
             </div>
           )}
-          {step === 3 && <ApplicationPart3 onFormSubmit={handlePart3Submit} />}
+          {step === 3 && (
+            <ApplicationPart3
+              onFormSubmit={handlePart3Submit}
+              initialData={formData as unknown as ApplicationPart3Inputs}
+            />
+          )}
           {step === 3 && (
             <div className="mt-8 flex justify-between">
               <button
@@ -157,7 +172,12 @@ const DriverApplication: React.FC = () => {
               </button>
             </div>
           )}
-          {step === 4 && <ApplicationPart4 onFormSubmit={handlePart4Submit} />}
+          {step === 4 && (
+            <ApplicationPart4
+              onFormSubmit={handlePart4Submit}
+              initialData={formData as unknown as ApplicationPart4Inputs}
+            />
+          )}
           {step === 4 && (
             <div className="mt-8 flex justify-between">
               <button
@@ -168,7 +188,12 @@ const DriverApplication: React.FC = () => {
               </button>
             </div>
           )}
-          {step === 5 && <ApplicationPart5 onFormSubmit={handlePart5Submit} />}
+          {step === 5 && (
+            <ApplicationPart5
+              onFormSubmit={handlePart5Submit}
+              initialData={formData as unknown as ApplicationPart5Inputs}
+            />
+          )}
           {step === 5 && (
             <div className="mt-8 flex justify-between">
               <button

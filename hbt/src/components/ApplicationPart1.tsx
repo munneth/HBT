@@ -38,16 +38,18 @@ type FormInputs = {
 
 interface ApplicationPart1Props {
   onFormSubmit?: (data: FormInputs) => void;
+  initialData?: Partial<FormInputs>;
 }
 
 const ApplicationPart1: React.FC<ApplicationPart1Props> = ({
   onFormSubmit,
+  initialData,
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<FormInputs>({ defaultValues: initialData });
 
   return (
     <form className="space-y-6">
