@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ApplicationPart1 from "./ApplicationPart1";
 import ApplicationPart2, { ApplicationPart2Inputs } from "./ApplicationPart2";
+import ApplicationPart3, { ApplicationPart3Inputs } from "./ApplicationPart3";
 
 // Define the form data type
 type FormData = {
@@ -45,11 +46,12 @@ type FormData = {
   accident1?: ApplicationPart2Inputs["accident1"];
   accident2?: ApplicationPart2Inputs["accident2"];
   accident3?: ApplicationPart2Inputs["accident3"];
+  violations?: ApplicationPart3Inputs["violations"];
 };
 
 const DriverApplication: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
 
   const handleFormSubmit = (data: FormData) => {
     setFormData(data);
@@ -69,7 +71,14 @@ const DriverApplication: React.FC = () => {
       accident2: data.accident2,
       accident3: data.accident3,
     }));
-    setStep(1);
+    setStep(3);
+  };
+
+  const handlePart3Submit = (data: ApplicationPart3Inputs) => {
+    setFormData((prev) => ({
+      ...(prev || ({} as FormData)),
+      violations: data.violations,
+    }));
   };
 
   const handleGeneratePDF = async () => {
@@ -105,6 +114,17 @@ const DriverApplication: React.FC = () => {
             <div className="mt-8 flex justify-between">
               <button
                 onClick={() => setStep(1)}
+                className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
+              >
+                Back
+              </button>
+            </div>
+          )}
+          {step === 3 && <ApplicationPart3 onFormSubmit={handlePart3Submit} />}
+          {step === 3 && (
+            <div className="mt-8 flex justify-between">
+              <button
+                onClick={() => setStep(2)}
                 className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
               >
                 Back
