@@ -51,7 +51,7 @@ type FormData = {
   violations?: ApplicationPart3Inputs["violations"];
   denied?: ApplicationPart3Inputs["denied"];
   denialExplanation?: ApplicationPart3Inputs["denialExplanation"];
-  employment1?: ApplicationPart4Inputs["employment1"];
+  employments?: ApplicationPart4Inputs["employments"];
   signature?: ApplicationPart5Inputs["signature"];
   dateSigned?: ApplicationPart5Inputs["dateSigned"];
 };
@@ -94,17 +94,29 @@ const DriverApplication: React.FC = () => {
   const handlePart4Submit = (data: ApplicationPart4Inputs) => {
     setFormData((prev) => ({
       ...(prev || ({} as FormData)),
-      employment1: data.employment1,
+      employments: data.employments,
     }));
     setStep(5);
   };
 
-  const handlePart5Submit = (data: ApplicationPart5Inputs) => {
-    setFormData((prev) => ({
-      ...(prev || ({} as FormData)),
+  const handlePart5Submit = async (data: ApplicationPart5Inputs) => {
+    const merged: FormData = {
+      ...(formData || ({} as FormData)),
       signature: data.signature,
       dateSigned: data.dateSigned,
-    }));
+    };
+    setFormData(merged);
+    // Automatically generate PDF on submit
+    try {
+      await fetch("/api/generate-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(merged),
+      });
+      console.log("PDF generation requested on submit");
+    } catch (err) {
+      console.error("Error generating PDF on submit:", err);
+    }
   };
 
   const handleGeneratePDF = async () => {
