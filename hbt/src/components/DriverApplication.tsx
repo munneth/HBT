@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import ApplicationPart1 from "./ApplicationPart1";
 import ApplicationPart2, { ApplicationPart2Inputs } from "./ApplicationPart2";
 import ApplicationPart3, { ApplicationPart3Inputs } from "./ApplicationPart3";
+import ApplicationPart4, { ApplicationPart4Inputs } from "./ApplicationPart4";
+import ApplicationPart5, { ApplicationPart5Inputs } from "./ApplicationPart5";
 
 // Define the form data type
 type FormData = {
@@ -49,11 +51,14 @@ type FormData = {
   violations?: ApplicationPart3Inputs["violations"];
   denied?: ApplicationPart3Inputs["denied"];
   denialExplanation?: ApplicationPart3Inputs["denialExplanation"];
+  employment1?: ApplicationPart4Inputs["employment1"];
+  signature?: ApplicationPart5Inputs["signature"];
+  dateSigned?: ApplicationPart5Inputs["dateSigned"];
 };
 
 const DriverApplication: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   const handleFormSubmit = (data: FormData) => {
     setFormData(data);
@@ -82,6 +87,23 @@ const DriverApplication: React.FC = () => {
       violations: data.violations,
       denied: data.denied,
       denialExplanation: data.denialExplanation,
+    }));
+    setStep(4);
+  };
+
+  const handlePart4Submit = (data: ApplicationPart4Inputs) => {
+    setFormData((prev) => ({
+      ...(prev || ({} as FormData)),
+      employment1: data.employment1,
+    }));
+    setStep(5);
+  };
+
+  const handlePart5Submit = (data: ApplicationPart5Inputs) => {
+    setFormData((prev) => ({
+      ...(prev || ({} as FormData)),
+      signature: data.signature,
+      dateSigned: data.dateSigned,
     }));
   };
 
@@ -129,6 +151,28 @@ const DriverApplication: React.FC = () => {
             <div className="mt-8 flex justify-between">
               <button
                 onClick={() => setStep(2)}
+                className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
+              >
+                Back
+              </button>
+            </div>
+          )}
+          {step === 4 && <ApplicationPart4 onFormSubmit={handlePart4Submit} />}
+          {step === 4 && (
+            <div className="mt-8 flex justify-between">
+              <button
+                onClick={() => setStep(3)}
+                className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
+              >
+                Back
+              </button>
+            </div>
+          )}
+          {step === 5 && <ApplicationPart5 onFormSubmit={handlePart5Submit} />}
+          {step === 5 && (
+            <div className="mt-8 flex justify-between">
+              <button
+                onClick={() => setStep(4)}
                 className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
               >
                 Back

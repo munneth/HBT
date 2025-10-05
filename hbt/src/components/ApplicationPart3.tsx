@@ -152,7 +152,7 @@ const ApplicationPart3: React.FC<ApplicationPart3Props> = ({
           })}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md"
         >
-          Finish
+          Next
         </button>
       </div>
       <div className="mt-8 pt-4 border-t-2 border-gray-200">
