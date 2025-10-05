@@ -43,17 +43,7 @@ export default function ProdNav() {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link
-              href="/about"
-              className="px-12 py-2 text-xl font-semibold text-black hover:text-gray-600 transition-colors"
-            >
-              About Us
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/application"
+              href="/apply"
               className="px-12 py-2 text-xl font-semibold text-black hover:text-gray-600 transition-colors"
             >
               Apply

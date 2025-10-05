@@ -44,10 +44,10 @@ export default function Footer() {
             </Link>
             <div className="w-px h-6 bg-gray-200"></div>
             <Link
-              href="/application"
+              href="/apply"
               className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
-              Application
+              Apply
             </Link>
             <div className="w-px h-6 bg-gray-200"></div>
             <Link
@@ -55,13 +55,6 @@ export default function Footer() {
               className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
             >
               Contact
-            </Link>
-            <div className="w-px h-6 bg-gray-200"></div>
-            <Link
-              href="/about"
-              className="text-gray-700 uppercase hover:text-gray-900 transition-colors"
-            >
-              About Us
             </Link>
           </div>
 
