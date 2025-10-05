@@ -47,6 +47,8 @@ type FormData = {
   accident2?: ApplicationPart2Inputs["accident2"];
   accident3?: ApplicationPart2Inputs["accident3"];
   violations?: ApplicationPart3Inputs["violations"];
+  denied?: ApplicationPart3Inputs["denied"];
+  denialExplanation?: ApplicationPart3Inputs["denialExplanation"];
 };
 
 const DriverApplication: React.FC = () => {
@@ -78,6 +80,8 @@ const DriverApplication: React.FC = () => {
     setFormData((prev) => ({
       ...(prev || ({} as FormData)),
       violations: data.violations,
+      denied: data.denied,
+      denialExplanation: data.denialExplanation,
     }));
   };
 
