@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import ApplicationPart1 from "./ApplicationPart1";
+import ApplicationPart2, { ApplicationPart2Inputs } from "./ApplicationPart2";
 
 // Define the form data type
 type FormData = {
@@ -35,14 +36,34 @@ type FormData = {
   prevAddress3Zip: string;
   prevAddress3DatesFrom: string;
   prevAddress3DatesTo: string;
+  license1?: ApplicationPart2Inputs["license1"];
+  license2?: ApplicationPart2Inputs["license2"];
+  license3?: ApplicationPart2Inputs["license3"];
+  experience1?: ApplicationPart2Inputs["experience1"];
+  experience2?: ApplicationPart2Inputs["experience2"];
+  experience3?: ApplicationPart2Inputs["experience3"];
 };
 
 const DriverApplication: React.FC = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
+  const [step, setStep] = useState<1 | 2>(1);
 
   const handleFormSubmit = (data: FormData) => {
-    console.log("Form Data received:", data);
     setFormData(data);
+    setStep(2);
+  };
+
+  const handlePart2Submit = (data: ApplicationPart2Inputs) => {
+    setFormData((prev) => ({
+      ...(prev || ({} as FormData)),
+      license1: data.license1,
+      license2: data.license2,
+      license3: data.license3,
+      experience1: data.experience1,
+      experience2: data.experience2,
+      experience3: data.experience3,
+    }));
+    setStep(1);
   };
 
   const handleGeneratePDF = async () => {
@@ -52,7 +73,7 @@ const DriverApplication: React.FC = () => {
     }
 
     try {
-      const response = await fetch("/api/generate-pdf", {
+      await fetch("/api/generate-pdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,15 +93,24 @@ const DriverApplication: React.FC = () => {
           Driver Application
         </h1>
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <ApplicationPart1 onFormSubmit={handleFormSubmit} />
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={handleGeneratePDF}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
-            >
-              Generate PDF
-            </button>
-          </div>
+          {step === 1 && <ApplicationPart1 onFormSubmit={handleFormSubmit} />}
+          {step === 2 && <ApplicationPart2 onFormSubmit={handlePart2Submit} />}
+          {step === 2 && (
+            <div className="mt-8 flex justify-between">
+              <button
+                onClick={() => setStep(1)}
+                className="border border-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg"
+              >
+                Back
+              </button>
+              <button
+                onClick={handleGeneratePDF}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+              >
+                Generate PDF
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
