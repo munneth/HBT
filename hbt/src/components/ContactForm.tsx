@@ -9,6 +9,11 @@ const ContactForm: React.FC = () => {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,10 +25,48 @@ const ContactForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement email functionality later
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: result.message || "Message sent successfully!",
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -114,13 +157,31 @@ const ContactForm: React.FC = () => {
           />
         </div>
 
+        {/* Status Message */}
+        {submitStatus.type && (
+          <div
+            className={`p-4 rounded-lg ${
+              submitStatus.type === "success"
+                ? "bg-green-100 border border-green-400 text-green-700"
+                : "bg-red-100 border border-red-400 text-red-700"
+            }`}
+          >
+            {submitStatus.message}
+          </div>
+        )}
+
         {/* Submit Button */}
         <div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105"
+            disabled={isSubmitting}
+            className={`w-full font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform ${
+              isSubmitting
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
+            } text-white`}
           >
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </div>
       </form>
