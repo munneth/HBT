@@ -30,7 +30,7 @@ export default function Home() {
               Welcome to HBT Inc.
             </h1>
             <p className="text-xl drop-shadow-lg mb-8">
-              reliable freight, delivered fast
+              Reliable Freight, Delivered Fast
             </p>
             <Link
               href="/contact"
