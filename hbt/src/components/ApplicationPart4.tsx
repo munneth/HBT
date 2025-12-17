@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export type EmploymentHistory = {
   employer?: string;
@@ -19,7 +19,7 @@ export type EmploymentHistory = {
 };
 
 export type ApplicationPart4Inputs = {
-  employments: EmploymentHistory[];
+  employment1: EmploymentHistory;
 };
 
 interface ApplicationPart4Props {
@@ -31,31 +31,24 @@ const ApplicationPart4: React.FC<ApplicationPart4Props> = ({
   onFormSubmit,
   initialData,
 }) => {
-  const { control, register, handleSubmit } = useForm<ApplicationPart4Inputs>({
+  const { register, handleSubmit } = useForm<ApplicationPart4Inputs>({
     defaultValues: initialData || {
-      employments: [
-        {
-          employer: "",
-          startDate: "",
-          endDate: "",
-          address: "",
-          supervisor: "",
-          city: "",
-          state: "",
-          zip: "",
-          phone: "",
-          fmcsr: false,
-          cfrPart40: false,
-          reasonsForLeaving: "",
-        },
-      ],
+      employment1: {
+        employer: "",
+        startDate: "",
+        endDate: "",
+        address: "",
+        supervisor: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
+        fmcsr: false,
+        cfrPart40: false,
+        reasonsForLeaving: "",
+      },
     },
   });
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "employments",
-  });
-  const maxEmployers = 3;
 
   return (
     <form className="space-y-6">
@@ -66,195 +59,187 @@ const ApplicationPart4: React.FC<ApplicationPart4Props> = ({
         This section is optional. Provide your most recent employment.
       </p>
 
-      {fields.map((field, index) => (
-        <div
-          key={field.id}
-          className="mb-6 p-4 border border-gray-200 rounded-md bg-gray-50"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-md font-medium text-gray-700">
-              Employer {index + 1}
-            </h3>
-            <button
-              type="button"
-              onClick={() => remove(index)}
-              className="text-sm text-red-600 hover:underline"
-              disabled={fields.length <= 1}
+      <div className="mb-6 p-4 border border-gray-200 rounded-md bg-gray-50">
+        <h3 className="text-md font-medium text-gray-700 mb-3">Employer 1</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="employment1.employer"
+              className="block text-sm font-medium text-gray-700"
             >
-              Remove
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Employer
-              </label>
-              <input
-                type="text"
-                {...register(`employments.${index}.employer` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Supervisor
-              </label>
-              <input
-                type="text"
-                {...register(`employments.${index}.supervisor` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Dates: From
-              </label>
-              <input
-                type="date"
-                {...register(`employments.${index}.startDate` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                To
-              </label>
-              <input
-                type="date"
-                {...register(`employments.${index}.endDate` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Address
+              Employer
             </label>
             <input
+              id="employment1.employer"
               type="text"
-              {...register(`employments.${index}.address` as const)}
+              {...register("employment1.employer")}
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                City
-              </label>
-              <input
-                type="text"
-                {...register(`employments.${index}.city` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                State
-              </label>
-              <input
-                type="text"
-                maxLength={2}
-                {...register(`employments.${index}.state` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Zip
-              </label>
-              <input
-                type="text"
-                {...register(`employments.${index}.zip` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Phone
-              </label>
-              <input
-                type="tel"
-                {...register(`employments.${index}.phone` as const)}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-          </div>
-
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className="inline-flex items-center gap-2">
-              <input
-                type="checkbox"
-                {...register(`employments.${index}.fmcsr` as const)}
-                className="h-4 w-4"
-              />
-              <span>
-                Were you subject to the Federal Motor Carrier Safety Regulations
-                during this period?
-              </span>
+          <div>
+            <label
+              htmlFor="employment1.supervisor"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Supervisor
             </label>
-            <label className="inline-flex items-center gap-2">
-              <input
-                type="checkbox"
-                {...register(`employments.${index}.cfrPart40` as const)}
-                className="h-4 w-4"
-              />
-              <span>
-                Were you subject to 49 CFR part 40 controlled substance and
-                alcohol testing during this period?
-              </span>
-            </label>
-          </div>
-
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Reasons for leaving
-            </label>
-            <textarea
-              rows={3}
-              {...register(`employments.${index}.reasonsForLeaving` as const)}
+            <input
+              id="employment1.supervisor"
+              type="text"
+              {...register("employment1.supervisor")}
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </div>
         </div>
-      ))}
 
-      <div className="flex gap-3">
-        <button
-          type="button"
-          onClick={() => {
-            if (fields.length >= maxEmployers) return;
-            append({
-              employer: "",
-              startDate: "",
-              endDate: "",
-              address: "",
-              supervisor: "",
-              city: "",
-              state: "",
-              zip: "",
-              phone: "",
-              fmcsr: false,
-              cfrPart40: false,
-              reasonsForLeaving: "",
-            });
-          }}
-          disabled={fields.length >= maxEmployers}
-          className={`border border-gray-300 font-semibold py-2 px-4 rounded-md ${
-            fields.length >= maxEmployers
-              ? "text-gray-400 cursor-not-allowed"
-              : "text-gray-800"
-          }`}
-        >
-          Add Employer {fields.length >= maxEmployers ? "(max 3)" : ""}
-        </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label
+              htmlFor="employment1.startDate"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Dates: From
+            </label>
+            <input
+              id="employment1.startDate"
+              type="date"
+              {...register("employment1.startDate")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="employment1.endDate"
+              className="block text-sm font-medium text-gray-700"
+            >
+              To
+            </label>
+            <input
+              id="employment1.endDate"
+              type="date"
+              {...register("employment1.endDate")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <label
+            htmlFor="employment1.address"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Address
+          </label>
+          <input
+            id="employment1.address"
+            type="text"
+            {...register("employment1.address")}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div>
+            <label
+              htmlFor="employment1.city"
+              className="block text-sm font-medium text-gray-700"
+            >
+              City
+            </label>
+            <input
+              id="employment1.city"
+              type="text"
+              {...register("employment1.city")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="employment1.state"
+              className="block text-sm font-medium text-gray-700"
+            >
+              State
+            </label>
+            <input
+              id="employment1.state"
+              type="text"
+              maxLength={2}
+              {...register("employment1.state")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="employment1.zip"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Zip
+            </label>
+            <input
+              id="employment1.zip"
+              type="text"
+              {...register("employment1.zip")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label
+              htmlFor="employment1.phone"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Phone
+            </label>
+            <input
+              id="employment1.phone"
+              type="tel"
+              {...register("employment1.phone")}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            />
+          </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              {...register("employment1.fmcsr")}
+              className="h-4 w-4"
+            />
+            <span>
+              Were you subject to the Federal Motor Carrier Safety Regulations
+              during this period?
+            </span>
+          </label>
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              {...register("employment1.cfrPart40")}
+              className="h-4 w-4"
+            />
+            <span>
+              Were you subject to 49 CFR part 40 controlled substance and
+              alcohol testing during this period?
+            </span>
+          </label>
+        </div>
+
+        <div className="mt-4">
+          <label
+            htmlFor="employment1.reasonsForLeaving"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Reasons for leaving
+          </label>
+          <textarea
+            id="employment1.reasonsForLeaving"
+            rows={3}
+            {...register("employment1.reasonsForLeaving")}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+          />
+        </div>
       </div>
 
       <button

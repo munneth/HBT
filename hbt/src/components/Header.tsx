@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       {/* Top section with logo and contact info - static position */}
-      <div className="bg-white flex items-center justify-center px-8 py-4 pb-10">
+      <div className="bg-white flex items-center justify-center px-8 py-4 pb-2">
         <div className="flex items-center justify-between w-full max-w-2xl">
           <div className="flex items-center gap-4">
             <Image
@@ -27,7 +27,7 @@ export default function Header() {
         </div>
       </div>
       {/* Navigation bar section - sticky position */}
-      <div className="sticky top-0 z-50 flex justify-center bg-white pt-8 pb-4">
+      <div className="sticky top-0 z-50 flex justify-center bg-white pt-2 pb-4">
         <ProdNav />
       </div>
     </>
