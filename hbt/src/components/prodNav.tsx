@@ -1,64 +1,53 @@
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
 export default function ProdNav() {
   return (
-    <NavigationMenu className="w-full">
-      {/* Dark bar similar to the reference design */}
-      <NavigationMenuList
-        className="text-base md:text-lg font-semibold bg-gray-800 py-3 px-10 w-full flex items-stretch justify-between gap-8"
-        style={{
-          clipPath:
-            "polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)",
-        }}
-      >
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/"
-              className="px-12 py-4 text-base md:text-lg font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
-            >
-              Home
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/resources"
-              className="px-12 py-4 text-base md:text-lg font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
-            >
-              Resources
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/contact"
-              className="px-12 py-4 text-base md:text-lg font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
-            >
-              Contact
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        {/* Apply button */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/apply"
-              className="px-12 py-4 text-base md:text-lg font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
-            >
-              Apply
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="w-full bg-gray-600">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Left side - Navigation links */}
+        <div className="flex items-center gap-8">
+          <Link
+            href="/"
+            className="text-white font-semibold uppercase hover:text-gray-200 transition-colors"
+          >
+            Home
+          </Link>
+          <Link
+            href="/resources"
+            className="text-white font-semibold uppercase hover:text-gray-200 transition-colors"
+          >
+            Resources
+          </Link>
+          <Link
+            href="/about"
+            className="text-white font-semibold uppercase hover:text-gray-200 transition-colors"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="text-white font-semibold uppercase hover:text-gray-200 transition-colors"
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Right side - Action buttons */}
+        <div className="flex items-center gap-4">
+          <Link
+            href="/quote"
+            className="bg-white text-gray-700 font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            Get a Quote
+          </Link>
+          <Link
+            href="/apply"
+            className="bg-white text-gray-700 font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            Drive with Us
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
