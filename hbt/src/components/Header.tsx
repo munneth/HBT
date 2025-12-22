@@ -65,8 +65,10 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Navigation bar */}
-        <ProdNav />
+        {/* Navigation bar with overlap effect */}
+        <div className="relative -mb-8 z-10">
+          <ProdNav />
+        </div>
       </div>
     </>
   );

@@ -16,11 +16,11 @@ export default function Home() {
       <Header />
       {/* Hero Section */}
       <div
-        className="w-full h-96 bg-cover bg-center bg-no-repeat flex items-center relative"
+        className="w-full h-[600px] bg-cover bg-center bg-no-repeat flex items-center relative -mt-20 z-0"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       >
         <div className="absolute inset-0 bg-[#808080]"></div>
-        <div className="w-full max-w-6xl mx-auto px-8 flex items-center justify-between relative z-10">
+        <div className="w-full max-w-6xl mx-auto px-8 flex items-center justify-between relative z-10 pt-32">
           {/* Left side - Truck image */}
           <motion.div
             className="flex-shrink-0 -ml-64"
