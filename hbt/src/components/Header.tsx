@@ -3,12 +3,11 @@
 import Image from "next/image";
 import ProdNav from "@/components/prodNav";
 import { Phone, Mail } from "lucide-react";
-import Link from "next/link";
 
 export default function Header() {
   return (
     <>
-      <div className="sticky top-0 z-50 bg-white">
+      <div className="bg-white" style={{ position: 'relative' }}>
         {/* Top section with logo and contact info */}
         <div className="w-full bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -65,8 +64,8 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Navigation bar with overlap effect */}
-        <div className="relative -mb-8 z-10">
+        {/* Navigation bar - positioned directly below top section to overlap hero */}
+        <div className="relative translate-y-1/2 z-[30]">
           <ProdNav />
         </div>
       </div>
